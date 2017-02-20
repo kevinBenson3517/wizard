@@ -3,15 +3,28 @@
 var jumping:boolean = false;
 var can_move:boolean = true;
 
+
+var fireball:GameObject;
+var gravityball:GameObject;
+
+var can_cast_fireball = true;
+var can_cast_gravityball = true;
+var can_cast_slowdown = true;
+
 var speed:float = 0.25;
 
-function Start () {
 
+var width:Vector3;
+
+function Start () {
+	width = Vector3(GetComponent.<Renderer>().bounds.size.x+.25, 0);
 }
 
 function Update () {
 	Move();
 	Jump();
+
+	Fire();
 
 	transform.rotation = Quaternion.identity;
 }
@@ -36,4 +49,23 @@ function Jump(){
 			jumping = true;
 	}
 
+}
+
+function Fire(){
+	//todo: cooldown
+	if (can_cast_fireball){
+		if (Input.GetButtonDown("Fire2")){
+			Instantiate(fireball,transform.position+width,Quaternion.identity);
+		}
+	}
+	if(can_cast_gravityball){
+		if (Input.GetButtonDown("Fire3")){
+
+		}
+	}
+	if(can_cast_slowdown){
+		if (Input.GetButtonDown("Fire4")){
+
+		}
+	}
 }
