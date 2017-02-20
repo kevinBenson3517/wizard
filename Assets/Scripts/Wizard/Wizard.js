@@ -2,7 +2,7 @@
 
 var jumping:boolean = false;
 var can_move:boolean = true;
-
+var currentDir:boolean = true; // Right is true, left is false
 var speed:float = 0.25;
 
 function Start () {
@@ -21,6 +21,18 @@ function Move(){
 		var x:int = Input.GetAxisRaw("Horizontal");
 		print(x*speed);
 		transform.Translate(x*speed,0,0);
+		if(x>0){
+			if(currentDir != true){
+				transform.localScale += new Vector3(6.5, 0, 0);
+				currentDir = true;
+			}
+		}
+		if(x<0){
+			if(currentDir != false){
+				transform.localScale += new Vector3(-6.5, 0, 0);
+				currentDir = false;
+			}
+		}		
 	}
 }
 
