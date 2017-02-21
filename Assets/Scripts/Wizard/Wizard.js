@@ -34,7 +34,6 @@ function Update () {
 function Move(){
 	if (can_move){
 		var x:int = Input.GetAxisRaw("Horizontal");
-		print(x*speed);
 		transform.Translate(x*speed,0,0);
 		if(x>0){
 			if(currentDir != true){
@@ -54,8 +53,6 @@ function Move(){
 function Jump(){
 	if (GetComponent.<Rigidbody2D>().velocity.y < 0.1 && GetComponent.<Rigidbody2D>().velocity.y > -0.1 )
 		jumping = false;
-
-	print(GetComponent.<Rigidbody2D>().velocity.y);
 
 	if (!jumping){
 		if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1"))
