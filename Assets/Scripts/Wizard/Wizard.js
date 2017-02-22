@@ -64,7 +64,7 @@ function Jump(){
 
 function Fire(){
 	//todo: cooldown
-	var location:Vector3 = transform.position+width;
+	var location:Vector3 = transform.position + width;
 	if (currentDir == false)
 		location -= transform.right + width;
 	if (can_cast_fireball){
