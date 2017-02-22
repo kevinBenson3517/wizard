@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+var drop:GameObject;
+
 var speed:float;
 
 var health:int;
@@ -23,6 +25,7 @@ function OnCollisionEnter2D (hit : Collision2D){
 	}
 
 	if (health <= 0){
+		Instantiate(drop, transform.position, Quaternion.identity);
 		Destroy(this.gameObject);
 	}
 }
