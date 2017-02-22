@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+var money:int = 0;
+
 var jumping:boolean = false;
 var can_move:boolean = true;
 
@@ -27,8 +29,6 @@ function Update () {
 	Jump();
 
 	Fire();
-
-	transform.rotation = Quaternion.identity;
 }
 
 function Move(){
@@ -86,4 +86,18 @@ function Fire(){
 
 		}
 	}
+}
+
+function OnCollisionEnter2D (hit : Collision2D){
+}
+
+
+
+
+
+
+
+
+function AddMoney(amount : int) {
+	money += amount;
 }
