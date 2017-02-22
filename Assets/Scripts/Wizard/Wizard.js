@@ -37,13 +37,13 @@ function Move(){
 		transform.Translate(x*speed,0,0);
 		if(x>0){
 			if(currentDir != true){
-				transform.localScale = transform.localScale = Vector3.Scale(transform.localScale, Vector3(-1,1,1));;
+				transform.localScale = Vector3.Scale(transform.localScale, Vector3(-1,1,1));
 				currentDir = true;
 			}
 		}
 		if(x<0){
 			if(currentDir != false){
-				transform.localScale = transform.localScale = Vector3.Scale(transform.localScale, Vector3(-1,1,1));;
+				transform.localScale =  Vector3.Scale(transform.localScale, Vector3(-1,1,1));
 				currentDir = false;
 			}
 		}
@@ -64,9 +64,16 @@ function Jump(){
 
 function Fire(){
 	//todo: cooldown
+	var location:Vector3 = transform.position+width;
+	if (currentDir == false)
+		location -= transform.right + width;
 	if (can_cast_fireball){
 		if (Input.GetButtonDown("Fire2")){
-			Instantiate(fireball,transform.position+width,Quaternion.identity);
+			var obj:GameObject = Instantiate(fireball,location,Quaternion.identity);
+			if (currentDir == false){
+				obj.transform.localScale =  Vector3.Scale(obj.transform.localScale, Vector3(-1,1,1));
+				obj.GetComponent.<fireball>().speed *= -1;
+			}
 		}
 	}
 	if(can_cast_gravityball){

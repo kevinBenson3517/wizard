@@ -19,7 +19,7 @@ function Update () {
 }
 
 function OnCollisionEnter2D (hit : Collision2D){
-
-
-	Destroy(this.gameObject);
+	if (!hit.gameObject.CompareTag("player")){
+		Destroy(this.gameObject);
+	}
 }
