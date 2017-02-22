@@ -15,10 +15,14 @@ function Update () {
 }
 
 function OnCollisionEnter2D (hit : Collision2D){
+
 	if (hit.gameObject.CompareTag("fireball")){
 		health--;
 	}
-
+	else{
+		speed = -speed;
+		transform.localScale = Vector3.Scale(transform.localScale, Vector3(-1,1,1));
+	}
 
 	if (health <= 0){
 		Destroy(this.gameObject);

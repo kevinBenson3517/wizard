@@ -37,13 +37,13 @@ function Move(){
 		transform.Translate(x*speed,0,0);
 		if(x>0){
 			if(currentDir != true){
-				transform.localScale += new Vector3(6.5, 0, 0);
+				transform.localScale = transform.localScale = Vector3.Scale(transform.localScale, Vector3(-1,1,1));;
 				currentDir = true;
 			}
 		}
 		if(x<0){
 			if(currentDir != false){
-				transform.localScale += new Vector3(-6.5, 0, 0);
+				transform.localScale = transform.localScale = Vector3.Scale(transform.localScale, Vector3(-1,1,1));;
 				currentDir = false;
 			}
 		}
