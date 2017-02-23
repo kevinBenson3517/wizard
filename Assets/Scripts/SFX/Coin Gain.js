@@ -9,6 +9,8 @@ function Start () {
 }
 
 function OnCollisionEnter2D (coll : Collision2D) {
-	source.PlayOneShot(hit, .5F);
+	if (coll.gameObject.CompareTag("player")) {
+		source.PlayOneShot(hit, .5F);
+	}
 }
 
