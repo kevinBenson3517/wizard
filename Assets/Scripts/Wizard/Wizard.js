@@ -16,7 +16,8 @@ var can_cast_slowdown = true;
 var currentDir:boolean = true; // Right is true, left is false
 
 var speed:float = 0.25;
-
+var jumpForce:int;
+var health:int;
 
 var width:Vector3;
 
@@ -36,8 +37,6 @@ function Awake() {
 
 function Start () {
 	width = Vector3(GetComponent.<Renderer>().bounds.size.x+.25, 0);
-
-
 }
 
 function Update () {
@@ -72,7 +71,7 @@ function Jump(){
 
 	if (!jumping){
 		if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1"))
-			GetComponent.<Rigidbody2D>().AddForce(Vector3.up*300);
+			GetComponent.<Rigidbody2D>().AddForce(Vector3.up*jumpForce);
 			jumping = true;
 	}
 
