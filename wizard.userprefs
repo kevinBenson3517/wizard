@@ -1,8 +1,11 @@
-﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Wizard/Wizard.js">
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Misc/Coin.js">
     <Files>
-      <File FileName="Assets/Scripts/Wizard/Wizard.js" Line="6" Column="1" />
+      <File FileName="Assets/Scripts/Enemies/Troll.js" Line="30" Column="1" />
+      <File FileName="Assets/Scripts/Wizard/Wizard.js" Line="27" Column="48" />
+      <File FileName="Assets/Scripts/SFX/Fireball Hit.js" Line="12" Column="10" />
+      <File FileName="Assets/Scripts/Misc/Coin.js" Line="15" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

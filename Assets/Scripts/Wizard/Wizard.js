@@ -25,14 +25,17 @@ var width:Vector3;
 /*----------------------
 	for sound effects 
 	---------------------*/
-var shoot_sound : AudioClip; // the audio clip  
-private var source : AudioSource; 
+var shoot_sound : AudioClip; // fireball shoot audio clip 
+var jump_sound : AudioClip;	 // jump audio clip 
+private var shoot_source : AudioSource;
+private var jump_source : AudioSource; 
 private var volLowRange : float = 0.5;
 private var volHighRange : float = 1.0;
 
 function Awake() {
 	/* for turning on the sound effect */
-	source = GetComponent.<AudioSource>();
+	shoot_source = GetComponent.<AudioSource>();
+	jump_source = GetComponent.<AudioSource>();
 }
 
 function Start () {
@@ -73,6 +76,8 @@ function Jump(){
 		if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1"))
 			GetComponent.<Rigidbody2D>().AddForce(Vector3.up*jumpForce);
 			jumping = true;
+			jump_source.PlayOneShot(jump_sound, .5);
+		}
 	}
 
 }
@@ -86,7 +91,7 @@ function Fire(){
 		if (Input.GetButtonDown("Fire2")){
 			// sfx for fireball shoot:
 			var vol : float = Random.Range(volLowRange, volHighRange); // randomizes vol to make more interesting
-			source.PlayOneShot(shoot_sound, vol);	// playing the sound effect
+			shoot_source.PlayOneShot(shoot_sound, vol);	// playing the sound effect
 
 			var obj:GameObject = Instantiate(fireball,location,Quaternion.identity);
 			if (currentDir == false){
