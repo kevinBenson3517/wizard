@@ -73,7 +73,7 @@ function Jump(){
 		jumping = false;
 
 	if (!jumping){
-		if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1"))
+		if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1")){
 			GetComponent.<Rigidbody2D>().AddForce(Vector3.up*jumpForce);
 			jumping = true;
 			jump_source.PlayOneShot(jump_sound, .5);
