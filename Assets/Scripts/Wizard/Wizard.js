@@ -20,8 +20,24 @@ var speed:float = 0.25;
 
 var width:Vector3;
 
+
+/*----------------------
+	for sound effects 
+	---------------------*/
+var shoot_sound : AudioClip; // the audio clip  
+private var source : AudioSource; 
+private var volLowRange : float = 0.5;
+private var volHighRange : float = 1.0;
+
+function Awake() {
+	/* for turning on the sound effect */
+	source = GetComponent.<AudioSource>();
+}
+
 function Start () {
 	width = Vector3(GetComponent.<Renderer>().bounds.size.x+.25, 0);
+
+
 }
 
 function Update () {
@@ -69,6 +85,10 @@ function Fire(){
 		location -= transform.right + width;
 	if (can_cast_fireball){
 		if (Input.GetButtonDown("Fire2")){
+			// sfx for fireball shoot:
+			var vol : float = Random.Range(volLowRange, volHighRange); // randomizes vol to make more interesting
+			source.PlayOneShot(shoot_sound, vol);	// playing the sound effect
+
 			var obj:GameObject = Instantiate(fireball,location,Quaternion.identity);
 			if (currentDir == false){
 				obj.transform.localScale =  Vector3.Scale(obj.transform.localScale, Vector3(-1,1,1));
