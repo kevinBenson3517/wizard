@@ -23,12 +23,12 @@ var width:Vector3;
 
 
 /*----------------------
-	for sound effects 
+	for sound effects
 	---------------------*/
-var shoot_sound : AudioClip; // fireball shoot audio clip 
-var jump_sound : AudioClip;	 // jump audio clip 
+var shoot_sound : AudioClip; // fireball shoot audio clip
+var jump_sound : AudioClip;	 // jump audio clip
 private var shoot_source : AudioSource;
-private var jump_source : AudioSource; 
+private var jump_source : AudioSource;
 private var volLowRange : float = 0.5;
 private var volHighRange : float = 1.0;
 
@@ -69,11 +69,8 @@ function Move(){
 }
 
 function Jump(){
-	if (GetComponent.<Rigidbody2D>().velocity.y < 0.1 && GetComponent.<Rigidbody2D>().velocity.y > -0.1 )
-		jumping = false;
-
 	if (!jumping){
-		if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1"))&& transform.position.y<0.8){
+		if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1"))){
 			GetComponent.<Rigidbody2D>().AddForce(Vector3.up*jumpForce);
 			jumping = true;
 			jump_source.PlayOneShot(jump_sound, .5);
@@ -113,6 +110,8 @@ function Fire(){
 }
 
 function OnCollisionEnter2D (hit : Collision2D){
+	if (hit.gameObject.CompareTag("Untagged"))
+		jumping = false;
 }
 
 
