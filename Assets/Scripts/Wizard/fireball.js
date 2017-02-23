@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+var explode:GameObject;
+
 var main_camera:Camera;
 
 var speed:float;
@@ -20,6 +22,7 @@ function Update () {
 
 function OnCollisionEnter2D (hit : Collision2D){
 	if (!hit.gameObject.CompareTag("player")){
+		Instantiate(explode, transform.position, Quaternion.identity);
 		Destroy(this.gameObject);
 	}
 }
