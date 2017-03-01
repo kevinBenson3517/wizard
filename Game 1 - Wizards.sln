@@ -1,14 +1,24 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-
+Project("{7EDE4298-62F6-7ACE-55B8-CD609CB9271F}") = "Game 1 - Wizards", "Assembly-CSharp-firstpass.csproj", "{AEB775EB-C23F-C99D-5732-0CA2E0932BC4}"
+EndProject
+Project("{7EDE4298-62F6-7ACE-55B8-CD609CB9271F}") = "Game 1 - Wizards", "Assembly-CSharp-Editor-firstpass.csproj", "{AB683498-DD72-FE8B-B57A-EB2F03A7AC2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-
+		{AEB775EB-C23F-C99D-5732-0CA2E0932BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEB775EB-C23F-C99D-5732-0CA2E0932BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEB775EB-C23F-C99D-5732-0CA2E0932BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEB775EB-C23F-C99D-5732-0CA2E0932BC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB683498-DD72-FE8B-B57A-EB2F03A7AC2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB683498-DD72-FE8B-B57A-EB2F03A7AC2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB683498-DD72-FE8B-B57A-EB2F03A7AC2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB683498-DD72-FE8B-B57A-EB2F03A7AC2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
