@@ -10,6 +10,8 @@ var ready:boolean = false;
 
 var can_talk_again:boolean;
 
+var instant_appear:boolean;
+
 var char_delay:float;
 var button_held:boolean = false;
 
@@ -32,16 +34,19 @@ function Start () {
 		textbox.SetActive(true);
 		textbox_text.SetActive(true);
 
-		for (var i=0; i<text.length; i++){
-			// print text one character at a time
-			textbox_text.GetComponent.<UI.Text>().text = "";
-			for (var j=0; j<text[i].length; j++){
-				textbox_text.GetComponent.<UI.Text>().text += text[i][j];
-				// if the button is held down it gets faster
-				yield WaitForSeconds(char_delay);
-			}
-
-			yield WaitUntilButtonPress();
+			for (var i=0; i<text.length; i++){
+				if(instant_appear){
+					textbox_text.GetComponent.<UI.Text>().text = text[i];
+					yield WaitForSeconds(0.1);
+				}
+				else{
+					// print characters one at a time
+					for (var j=0; j<text[i].length; j++){
+						textbox_text.GetComponent.<UI.Text>().text += text[i][j];
+						yield WaitForSeconds(char_delay);
+					}
+				}
+				yield WaitUntilButtonPress();
 		}
 
 		player.SendMessage("EnableDisablePlayer");
