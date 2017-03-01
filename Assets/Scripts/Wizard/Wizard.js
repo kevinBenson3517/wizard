@@ -4,6 +4,7 @@ var money:int = 0;
 
 var jumping:boolean = false;
 var can_move:boolean = true;
+var can_jump:boolean = true;	//separate variable for the sake of the textbox; jumping can be set to false as soon as the player collides with the ground, so the player could jump again
 
 
 var fireball:GameObject;
@@ -69,7 +70,7 @@ function Move(){
 }
 
 function Jump(){
-	if (!jumping){
+	if (!jumping && can_jump){
 		if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1"))){
 			GetComponent.<Rigidbody2D>().AddForce(Vector3.up*jumpForce);
 			jumping = true;
@@ -123,4 +124,12 @@ function OnCollisionEnter2D (hit : Collision2D){
 
 function AddMoney(amount : int) {
 	money += amount;
+}
+
+function EnableDisablePlayer(){
+	can_move = !can_move;
+	can_jump = !can_jump;
+	can_cast_fireball = !can_cast_fireball;
+	can_cast_slowdown = !can_cast_slowdown;
+	can_cast_gravityball = !can_cast_gravityball;
 }

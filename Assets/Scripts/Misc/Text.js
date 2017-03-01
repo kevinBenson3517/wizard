@@ -2,7 +2,13 @@
 
 var text:String[];
 
+// if you just want it to start immediately, just set ready to true in the inspector
+var call_on_enter:boolean;
+var call_on_press:boolean;
+
 var ready:boolean = false;
+
+var can_talk_again:boolean;
 
 function Start () {
 	// please make sure the following is a part of the scene with the same tags
@@ -15,30 +21,34 @@ function Start () {
 	textbox.SetActive(false);
 	textbox_text.SetActive(false);
 
-	while (!ready)
-		yield;
+	while(1){
+		while (!ready)
+			yield;
 
-	print("ready");
-	print(text.length);
+		print("ready");
+		print(text.length);
 
-	wizard.can_move = false;
-	wizard.jumping = true;
-	textbox.SetActive(true);
-	textbox_text.SetActive(true);
+		player.SendMessage("EnableDisablePlayer");
+		textbox.SetActive(true);
+		textbox_text.SetActive(true);
 
-	for (var i=0; i<text.length; i++){
-		textbox_text.GetComponent.<UI.Text>().text = text[i];
-		yield WaitUntilButtonPress();
-		yield WaitForSeconds(.01);	// probably not the best way to do this
+		for (var i=0; i<text.length; i++){
+			textbox_text.GetComponent.<UI.Text>().text = text[i];
+			yield WaitUntilButtonPress();
+			yield WaitForSeconds(.01);	// probably not the best way to do this
+		}
+
+		print ("done");
+
+		player.SendMessage("EnableDisablePlayer");
+		textbox.SetActive(false);
+		textbox_text.SetActive(false);
+
+		if (!can_talk_again)
+			break;
+
+		ready = false;
 	}
-
-	print ("done");
-
-	wizard.can_move = true;
-	wizard.jumping = false;
-	textbox.SetActive(false);
-	textbox_text.SetActive(false);
-
 }
 
 function WaitUntilButtonPress(){
@@ -49,5 +59,12 @@ function WaitUntilButtonPress(){
 
 
 function OnTriggerEnter2D (hit : Collider2D){ 	//just some test code
-	ready = true;
+	if (call_on_enter)
+		ready = true;
+}
+
+function OnTriggerStay2D(hit : Collider2D){
+	if (call_on_press)
+		if (Input.GetAxisRaw("Vertical") == 1)
+			ready = true;
 }
