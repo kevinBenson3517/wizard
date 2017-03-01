@@ -10,6 +10,9 @@ var ready:boolean = false;
 
 var can_talk_again:boolean;
 
+var char_delay:float;
+var button_held:boolean = false;
+
 function Start () {
 	// please make sure the following is a part of the scene with the same tags
 	// also make sure that these are also active
@@ -25,20 +28,21 @@ function Start () {
 		while (!ready)
 			yield;
 
-		print("ready");
-		print(text.length);
-
 		player.SendMessage("EnableDisablePlayer");
 		textbox.SetActive(true);
 		textbox_text.SetActive(true);
 
 		for (var i=0; i<text.length; i++){
-			textbox_text.GetComponent.<UI.Text>().text = text[i];
-			yield WaitUntilButtonPress();
-			yield WaitForSeconds(.01);	// probably not the best way to do this
-		}
+			// print text one character at a time
+			textbox_text.GetComponent.<UI.Text>().text = "";
+			for (var j=0; j<text[i].length; j++){
+				textbox_text.GetComponent.<UI.Text>().text += text[i][j];
+				// if the button is held down it gets faster
+				yield WaitForSeconds(char_delay);
+			}
 
-		print ("done");
+			yield WaitUntilButtonPress();
+		}
 
 		player.SendMessage("EnableDisablePlayer");
 		textbox.SetActive(false);
