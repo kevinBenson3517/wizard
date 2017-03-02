@@ -21,8 +21,7 @@ function OnCollisionEnter2D (hit : Collision2D){
 		health--;
 	}
 	if (hit.gameObject.CompareTag("Untagged")){
-		speed = -speed;
-		transform.localScale = Vector3.Scale(transform.localScale, Vector3(-1,1,1));
+		ChangeDirection();
 	}
 
 	if (health <= 0){
@@ -31,3 +30,7 @@ function OnCollisionEnter2D (hit : Collision2D){
 	}
 }
 
+function ChangeDirection(){
+	speed = -speed;
+	transform.localScale = Vector3.Scale(transform.localScale, Vector3(-1,1,1));
+}
