@@ -15,6 +15,10 @@ var can_cast_fireball = true;
 var can_cast_gravityball = true;
 var can_cast_slowdown = true;
 
+var time_since_last_fireball:float;
+
+var fireball_cooldown:float;
+
 var currentDir:boolean = true; // Right is true, left is false
 
 var speed:float = 0.25;
@@ -95,7 +99,7 @@ function Fire(){
 	if (currentDir == false)
 		location -= transform.right + width;
 	if (can_cast_fireball){
-		if (Input.GetButtonDown("Fire2")){
+		if (Input.GetButtonDown("Fire2") && (Time.time - time_since_last_fireball > fireball_cooldown)){
 			// sfx for fireball shoot:
 			var vol : float = Random.Range(volLowRange, volHighRange); // randomizes vol to make more interesting
 			shoot_source.PlayOneShot(shoot_sound, vol);	// playing the sound effect
@@ -105,6 +109,7 @@ function Fire(){
 				obj.transform.localScale =  Vector3.Scale(obj.transform.localScale, Vector3(-1,1,1));
 				obj.GetComponent.<fireball>().speed *= -1;
 			}
+			time_since_last_fireball = Time.time;
 		}
 	}
 	if(can_cast_gravityball){
