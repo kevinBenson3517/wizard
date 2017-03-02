@@ -3,6 +3,7 @@
 var money:int = 0;
 
 var jumping:boolean = false;
+var can_double_jump = true;
 var can_move:boolean = true;
 var can_jump:boolean = true;	//separate variable for the sake of the textbox; jumping can be set to false as soon as the player collides with the ground, so the player could jump again
 
@@ -77,7 +78,15 @@ function Jump(){
 			jump_source.PlayOneShot(jump_sound, .5);
 		}
 	}
-
+	else{
+		if (can_double_jump){
+			if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1"))){
+				can_double_jump = false;
+				GetComponent.<Rigidbody2D>().velocity = Vector2(0,0);
+				GetComponent.<Rigidbody2D>().AddForce(Vector3.up*jumpForce);
+			}
+		}
+	}
 }
 
 function Fire(){
@@ -111,8 +120,10 @@ function Fire(){
 }
 
 function OnCollisionEnter2D (hit : Collision2D){
-	if (hit.gameObject.CompareTag("Untagged"))
+	if (hit.gameObject.CompareTag("Untagged")){
 		jumping = false;
+		can_double_jump = true;
+	}
 }
 
 
