@@ -23,6 +23,10 @@ function OnCollisionEnter2D (hit : Collision2D){
 	if (hit.gameObject.CompareTag("Untagged")){
 		ChangeDirection();
 	}
+	
+	if (hit.gameObject.CompareTag("troll")){
+		ChangeDirection();
+	}
 
 	if (health <= 0){
 		Instantiate(drop, transform.position, Quaternion.identity);
