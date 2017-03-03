@@ -53,6 +53,9 @@ function Update () {
 	Jump();
 
 	Fire();
+    if(transform.position.x>140)
+    {	Application.LoadLevel("Level2"); //THIS
+    }
 }
 
 function Move(){
