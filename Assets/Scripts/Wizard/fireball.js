@@ -9,6 +9,13 @@ var damage:int;
 
 function Start () {
 	main_camera = GameObject.FindWithTag("MainCamera").GetComponent.<Camera>();
+	var rend = GetComponent.<Renderer>();
+	
+	// Set specular shader
+	rend.material.shader = Shader.Find ("Specular");
+	
+	// Set red specular highlights
+	rend.material.SetColor ("_SpecColor", Color.red);
 }
 
 function Update () {
