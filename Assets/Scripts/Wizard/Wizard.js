@@ -77,6 +77,7 @@ function Move(){
 function Jump(){
 	if (!jumping && can_jump){
 		if ((Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1"))){
+			GetComponent.<Rigidbody2D>().velocity = Vector2(0,0);
 			GetComponent.<Rigidbody2D>().AddForce(Vector3.up*jumpForce);
 			jumping = true;
 			jump_source.PlayOneShot(jump_sound, .5);
@@ -88,6 +89,7 @@ function Jump(){
 				can_double_jump = false;
 				GetComponent.<Rigidbody2D>().velocity = Vector2(0,0);
 				GetComponent.<Rigidbody2D>().AddForce(Vector3.up*jumpForce);
+				jump_source.PlayOneShot(jump_sound, .5);
 			}
 		}
 	}
