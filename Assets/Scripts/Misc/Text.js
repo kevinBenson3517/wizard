@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+import UnityEngine.SceneManagement;
+
 var text:String[];
 
 // if you just want it to start immediately, just set ready to true in the inspector
@@ -10,18 +12,25 @@ var ready:boolean = false;
 
 var can_talk_again:boolean;
 
+var load_scene_on_end:String;
+
 var instant_appear:boolean;
 
 var char_delay:float;
 var button_held:boolean = false;
+
+var char_exists:boolean;
 
 function Start () {
 	// please make sure the following is a part of the scene with the same tags
 	// also make sure that these are also active
 	var textbox:GameObject = GameObject.FindWithTag("textbox");						//.GetComponent.<UI.Image>();
 	var textbox_text:GameObject = GameObject.FindWithTag("textbox text");	//.GetComponent.<UI.Text>();
-	var player:GameObject = GameObject.FindWithTag("player");
-	var wizard:Wizard = player.GetComponent.<Wizard>();
+
+	if(char_exists){
+		var player:GameObject = GameObject.FindWithTag("player");
+		var wizard:Wizard = player.GetComponent.<Wizard>();
+	}
 
 	textbox.SetActive(false);
 	textbox_text.SetActive(false);
@@ -30,11 +39,12 @@ function Start () {
 		while (!ready)
 			yield;
 
-		player.SendMessage("EnableDisablePlayer");
+		if (char_exists) {player.SendMessage("EnableDisablePlayer");}
 		textbox.SetActive(true);
 		textbox_text.SetActive(true);
 
 			for (var i=0; i<text.length; i++){
+				textbox_text.GetComponent.<UI.Text>().text = "";
 				if(instant_appear){
 					textbox_text.GetComponent.<UI.Text>().text = text[i];
 					yield WaitForSeconds(0.1);
@@ -49,15 +59,20 @@ function Start () {
 				yield WaitUntilButtonPress();
 		}
 
-		player.SendMessage("EnableDisablePlayer");
+		if (char_exists) {player.SendMessage("EnableDisablePlayer");}
 		textbox.SetActive(false);
 		textbox_text.SetActive(false);
+
+		if (load_scene_on_end != "")
+			SceneManager.LoadScene(load_scene_on_end);
 
 		if (!can_talk_again)
 			break;
 
 		ready = false;
 	}
+
+
 }
 
 function WaitUntilButtonPress(){
