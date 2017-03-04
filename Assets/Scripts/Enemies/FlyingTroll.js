@@ -12,7 +12,7 @@ function Start () {
 }
 
 function Update () {
-	transform.position.x += -speed;
+	transform.position.y += -speed;
 }
 
 
@@ -20,15 +20,16 @@ function OnCollisionEnter2D (hit : Collision2D){
 	if (hit.gameObject.CompareTag("fireball")){
 		health--;
 	}
-	if (hit.gameObject.CompareTag("Untagged")){
+
+	if (transform.position.y < 1.5){
+		transform.position.y = 1.51;
 		ChangeDirection();
 	}
 
-	if (hit.gameObject.CompareTag("player")) 
-      { 
-          hit.gameObject.GetComponent(Wizard).lives -=1;
-		  print(hit.gameObject.GetComponent(Wizard).lives);
-      }
+	if (transform.position.y >= 4.5){
+		transform.position.y = 4.49;
+		ChangeDirection();
+	}
 
 	if (health <= 0){
 		Instantiate(drop, transform.position, Quaternion.identity);
@@ -38,5 +39,5 @@ function OnCollisionEnter2D (hit : Collision2D){
 
 function ChangeDirection(){
 	speed = -speed;
-	transform.localScale = Vector3.Scale(transform.localScale, Vector3(-1,1,1));
+	transform.localScale = Vector3.Scale(transform.localScale, Vector3(1,1,1));
 }

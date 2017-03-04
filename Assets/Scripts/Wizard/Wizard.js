@@ -129,7 +129,7 @@ function Fire(){
 }
 
 function OnCollisionEnter2D (hit : Collision2D){
-	if (hit.gameObject.tag == "hazard" | hit.gameObject.tag == "troll"){
+	if (hit.gameObject.tag == "hazard" || hit.gameObject.tag == "troll"){
 		jumping = false;
 		can_double_jump = true;
 	}
