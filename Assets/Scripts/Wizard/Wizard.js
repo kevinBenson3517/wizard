@@ -1,6 +1,9 @@
 ﻿#pragma strict
+import UnityEngine.UI;
 
-var money:int = 0;
+
+var money:int = 0;	// money
+var countMoney : Text;
 
 var jumping:boolean = false;
 var can_double_jump = true;
@@ -27,7 +30,8 @@ var health:int;
 
 var width:Vector3;
 
-var lives : int;
+var lives : int;	// lives
+
 
 /*----------------------
 	for sound effects
@@ -48,6 +52,7 @@ function Awake() {
 function Start () {
 	width = Vector3(GetComponent.<Renderer>().bounds.size.x+.25, 0);
 	lives = 3;
+	AddMoney(0);
 }
 
 function Update () {
@@ -133,17 +138,22 @@ function OnCollisionEnter2D (hit : Collision2D){
 		jumping = false;
 		can_double_jump = true;
 	}
+
+	if (hit.gameObject.tag == "coin") {
+		AddMoney(money);
+	}
+
 }
 
 
-
-
-
-
-
-
 function AddMoney(amount : int) {
-	money += amount;
+	if (amount == 0){
+		countMoney.text = "Coins: 0";
+	}
+	else {
+		money++;
+		countMoney.text = "Coins: " + money.ToString();
+	}
 }
 
 function EnableDisablePlayer(){
