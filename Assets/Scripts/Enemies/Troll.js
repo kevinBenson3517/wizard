@@ -28,6 +28,12 @@ function OnCollisionEnter2D (hit : Collision2D){
 		ChangeDirection();
 	}
 
+	if (hit.gameObject.CompareTag("player")) 
+      { 
+          hit.gameObject.GetComponent(Wizard).lives -=1;
+		  print(hit.gameObject.GetComponent(Wizard).lives);
+      }
+
 	if (health <= 0){
 		Instantiate(drop, transform.position, Quaternion.identity);
 		Destroy(this.gameObject);

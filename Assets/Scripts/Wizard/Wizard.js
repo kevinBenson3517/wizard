@@ -27,6 +27,7 @@ var health:int;
 
 var width:Vector3;
 
+var lives : int;
 
 /*----------------------
 	for sound effects
@@ -46,6 +47,7 @@ function Awake() {
 
 function Start () {
 	width = Vector3(GetComponent.<Renderer>().bounds.size.x+.25, 0);
+	lives = 3;
 }
 
 function Update () {
@@ -127,7 +129,7 @@ function Fire(){
 }
 
 function OnCollisionEnter2D (hit : Collision2D){
-	if (hit.gameObject.CompareTag("Untagged")){
+	if (hit.gameObject.tag == "hazard" | hit.gameObject.tag == "troll"){
 		jumping = false;
 		can_double_jump = true;
 	}
