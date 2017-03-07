@@ -16,11 +16,17 @@ var initial_height:float;
 var max_height:float;
 var min_height:float;
 
+var dead:boolean;
+
+var fadeout:GameObject;
+var fadeout_increment:float;
+
 function Start () {
 	initial_height = transform.position.y;
 	max_height = initial_height + range;
 	min_height = initial_height - range;
 
+	print(fadeout.GetComponent.<SpriteRenderer>().color);
 }
 
 function Update () {
@@ -37,20 +43,36 @@ function Move(){
 		speed = -speed;
 		going_up = true;
 	}
-
-	transform.position.y += speed;
+	if(dead){
+		transform.position.y -= 0.10;
+		transform.Rotate(Vector3.back*2);
+		fadeout.GetComponent.<SpriteRenderer>().color.a += fadeout_increment;
+	}
+	else
+		transform.position.y += speed;
 }
 
 
 function Fire(){
 	var location:Vector3 = transform.position - transform.right;
-	if (Time.time - time_since_last_fireball > fireball_cooldown){
+	if (Time.time - time_since_last_fireball > fireball_cooldown && !dead){
 		var obj:GameObject = Instantiate(fireballs[fireball_iteration % fireballs.length],location,Quaternion.identity);
 		obj.transform.localScale =  Vector3.Scale(obj.transform.localScale, Vector3(-1,1,1));
-		obj.GetComponent.<BossFireball>().speed *= -1;
+		if(fireball_iteration % fireballs.length == 0){obj.GetComponent.<BossFireball>().speed *= -1;}
+		Physics2D.IgnoreCollision(obj.GetComponent.<Collider2D>(), GetComponent.<Collider2D>());
 
 		time_since_last_fireball = Time.time;
 		fireball_iteration++;
 	}
 
+}
+
+
+function OnCollisionEnter2D (hit : Collision2D){
+	print(hit.gameObject.tag);
+	if (hit.gameObject.tag == "fireball")
+		health--;
+	if (health <= 0){
+		dead = true;
+	}
 }

@@ -40,6 +40,6 @@ function OnCollisionEnter2D (hit : Collision2D){
 		Instantiate(explode, transform.position, Quaternion.identity);
 		Destroy(this.gameObject);
 	}
-	if (!hit.gameObject.CompareTag("fireball"))
+	if (!hit.gameObject.CompareTag("fireball") && !hit.gameObject.CompareTag("dragon") && !hit.gameObject.CompareTag("troll"))
 		Destroy(this.gameObject);
 }

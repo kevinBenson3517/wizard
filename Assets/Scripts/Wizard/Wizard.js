@@ -134,7 +134,7 @@ function Fire(){
 }
 
 function OnCollisionEnter2D (hit : Collision2D){
-	if (hit.gameObject.tag == "Untagged"){
+	if (hit.gameObject.tag == "Untagged" && can_jump){
 		jumping = false;
 		can_double_jump = true;
 	}
@@ -148,18 +148,28 @@ function OnCollisionEnter2D (hit : Collision2D){
 
 function AddMoney(amount : int) {
 	if (amount == 0){
-		countMoney.text = "Coins: 0";
+		//countMoney.text = "Coins: 0";
 	}
 	else {
 		money++;
-		countMoney.text = "Coins: " + money.ToString();
+		//countMoney.text = "Coins: " + money.ToString();
 	}
 }
 
-function EnableDisablePlayer(){
-	can_move = !can_move;
-	can_jump = !can_jump;
-	can_cast_fireball = !can_cast_fireball;
-	can_cast_slowdown = !can_cast_slowdown;
-	can_cast_gravityball = !can_cast_gravityball;
+function DisablePlayer(){
+	can_move = false;
+	can_jump = false;
+	can_double_jump = false;
+	can_cast_fireball = false;
+	can_cast_slowdown = false;
+	can_cast_gravityball = false;
+}
+
+function EnablePlayer(){
+	can_move = true;
+	can_jump = true;
+	can_double_jump = true;
+	can_cast_fireball = true;
+	can_cast_slowdown = true;
+	can_cast_gravityball = true;
 }
