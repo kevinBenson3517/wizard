@@ -16,6 +16,9 @@ function Update () {
 
 
 function OnCollisionEnter2D (hit : Collision2D){
+	if (hit.gameObject.CompareTag("boss_fireball") || hit.gameObject.CompareTag("dragon"))
+		Physics2D.IgnoreCollision(hit.collider, GetComponent.<Collider2D>());
+
 	if (hit.gameObject.CompareTag("fireball")){
 		health--;
 	}

@@ -30,6 +30,7 @@ function Start () {
 	if(char_exists){
 		var player:GameObject = GameObject.FindWithTag("player");
 		var wizard:Wizard = player.GetComponent.<Wizard>();
+		print(player);
 	}
 
 	textbox.SetActive(false);
@@ -39,7 +40,7 @@ function Start () {
 		while (!ready)
 			yield;
 
-		if (char_exists) {player.SendMessage("EnableDisablePlayer");}
+		if (char_exists) {player.SendMessage("DisablePlayer");}
 		textbox.SetActive(true);
 		textbox_text.SetActive(true);
 
@@ -59,7 +60,7 @@ function Start () {
 				yield WaitUntilButtonPress();
 		}
 
-		if (char_exists) {player.SendMessage("EnableDisablePlayer");}
+		if (char_exists) {player.SendMessage("EnablePlayer");}
 		textbox.SetActive(false);
 		textbox_text.SetActive(false);
 

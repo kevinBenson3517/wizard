@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+import UnityEngine.UI;
+
 var hit_sound : AudioClip;
 
 var taken : boolean = false;

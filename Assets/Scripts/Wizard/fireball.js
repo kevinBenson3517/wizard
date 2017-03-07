@@ -9,6 +9,13 @@ var damage:int;
 
 function Start () {
 	main_camera = GameObject.FindWithTag("MainCamera").GetComponent.<Camera>();
+	// var rend = GetComponent.<Renderer>();
+	//
+	// // Set specular shader
+	// rend.material.shader = Shader.Find ("Specular");
+	//
+	// // Set red specular highlights
+	// rend.material.SetColor ("_SpecColor", Color.red);
 }
 
 function Update () {
@@ -21,6 +28,10 @@ function Update () {
 }
 
 function OnCollisionEnter2D (hit : Collision2D){
+	print(hit.gameObject.tag);
+	if(hit.gameObject.CompareTag("boss_fireball"))
+		Physics2D.IgnoreCollision(hit.collider, GetComponent.<Collider2D>());
+
 	if (!hit.gameObject.CompareTag("player")){
 		Instantiate(explode, transform.position, Quaternion.identity);
 		Destroy(this.gameObject);
