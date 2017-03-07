@@ -3,7 +3,8 @@ import UnityEngine.UI;
 
 
 var money:int = 0;	// money
-var countMoney : Text;
+var countMoney : String;
+var gui_money:UI.Text;
 
 var jumping:boolean = false;
 var can_double_jump = true;
@@ -58,11 +59,7 @@ function Start () {
 function Update () {
 	Move();
 	Jump();
-
 	Fire();
-    if(transform.position.x>140)
-    {	Application.LoadLevel("Level2"); //THIS
-    }
 }
 
 function Move(){
@@ -151,11 +148,11 @@ function OnCollisionEnter2D (hit : Collision2D){
 
 function AddMoney(amount : int) {
 	if (amount == 0){
-		//countMoney.text = "Coins: 0";
+		countMoney = "Coins: 0";
 	}
 	else {
 		money++;
-		//countMoney.text = "Coins: " + money.ToString();
+		gui_money.text = "Coins: " + money.ToString();
 	}
 }
 
