@@ -20,7 +20,7 @@ function OnCollisionEnter2D (hit : Collision2D){
 	if (hit.gameObject.CompareTag("fireball")){
 		health--;
 	}
-	if (hit.gameObject.CompareTag("Untagged")){
+	if (hit.gameObject.CompareTag("Untagged") || hit.gameObject.CompareTag("mp") ){
 		ChangeDirection();
 	}
 
