@@ -29,7 +29,7 @@ function Update () {
 
 function OnCollisionEnter2D (hit : Collision2D){
 	print(hit.gameObject.tag);
-	if(hit.gameObject.CompareTag("boss_fireball"))
+	if(hit.gameObject.CompareTag("boss_fireball") || hit.gameObject.CompareTag("hazard"))
 		Physics2D.IgnoreCollision(hit.collider, GetComponent.<Collider2D>());
 
 	if (!hit.gameObject.CompareTag("player")){

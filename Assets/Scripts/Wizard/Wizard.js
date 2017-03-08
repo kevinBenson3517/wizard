@@ -143,6 +143,13 @@ function OnCollisionEnter2D (hit : Collision2D){
 		AddMoney(money);
 	}
 
+	if (hit.gameObject.CompareTag("troll") || hit.gameObject.CompareTag("hazard") || hit.gameObject.CompareTag("boss_fireball") || hit.gameObject.CompareTag("dragon"))
+	{
+		print(hit.gameObject.tag);
+		lives -= 1;
+		print(lives);
+	}
+
 }
 
 
