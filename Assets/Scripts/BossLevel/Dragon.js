@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+import UnityEngine.SceneManagement;
+
 var health:int;
 
 var fireballs:GameObject[];
@@ -20,6 +22,9 @@ var dead:boolean;
 
 var fadeout:GameObject;
 var fadeout_increment:float;
+var time_to_end:float;
+var time_since_killed:float;
+var level:String;
 
 function Start () {
 	initial_height = transform.position.y;
@@ -47,6 +52,9 @@ function Move(){
 		transform.position.y -= 0.10;
 		transform.Rotate(Vector3.back*2);
 		fadeout.GetComponent.<SpriteRenderer>().color.a += fadeout_increment;
+		if (Time.time-time_since_killed > time_to_end){
+			Application.LoadLevel(level);
+		}
 	}
 	else
 		transform.position.y += speed;
@@ -74,5 +82,6 @@ function OnCollisionEnter2D (hit : Collision2D){
 		health--;
 	if (health <= 0){
 		dead = true;
+		time_since_killed = Time.time;
 	}
 }
