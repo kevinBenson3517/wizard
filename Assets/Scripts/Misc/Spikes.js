@@ -7,4 +7,5 @@ function OnTriggerEnter2D (other: Collider2D)
           other.gameObject.GetComponent(Wizard).lives -=1;
 		  print(other.gameObject.GetComponent(Wizard).lives);
       }
+      else other.gameObject.GetComponent(Troll).ChangeDirection();
  }
