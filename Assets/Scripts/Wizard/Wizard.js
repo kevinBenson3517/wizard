@@ -6,6 +6,7 @@ var money:int = 0;	// money
 var countMoney : String;
 var gui_money:UI.Text;
 
+var DeathCanvas:Canvas;
 var jumping:boolean = false;
 var can_double_jump = true;
 var can_move:boolean = true;
@@ -28,7 +29,6 @@ var currentDir:boolean = true; // Right is true, left is false
 var speed:float = 0.25;
 var jumpForce:int;
 var health:int;
-
 var width:Vector3;
 
 var lives : int;	// lives
@@ -53,6 +53,7 @@ function Awake() {
 function Start () {
 	width = Vector3(GetComponent.<Renderer>().bounds.size.x+.25, 0);
 	lives = 3;
+	DeathCanvas.enabled = false;
 	AddMoney(0);
 }
 
@@ -148,6 +149,9 @@ function OnCollisionEnter2D (hit : Collision2D){
 		print(hit.gameObject.tag);
 		lives -= 1;
 		print(lives);
+		if(lives<=0){
+			death();
+		}
 	}
 
 }
@@ -179,4 +183,11 @@ function EnablePlayer(){
 	can_cast_fireball = true;
 	can_cast_slowdown = true;
 	can_cast_gravityball = true;
+}
+
+function death(){
+	Time.timeScale = 0;
+	money -=10;
+	DeathCanvas.enabled = true;
+	lives = 3;
 }
