@@ -12,7 +12,7 @@ function Start () {
 }
 
 function Update () {
-	transform.position.y += -speed;
+	transform.position.y += speed;
 }
 
 
@@ -22,11 +22,13 @@ function OnCollisionEnter2D (hit : Collision2D){
 	}
 
 	if (transform.position.y < 1.5){
+		print("too low");
 		transform.position.y = 1.51;
 		ChangeDirection();
 	}
 
 	if (transform.position.y >= 4.5){
+		print("too high");
 		transform.position.y = 4.49;
 		ChangeDirection();
 	}
@@ -39,5 +41,4 @@ function OnCollisionEnter2D (hit : Collision2D){
 
 function ChangeDirection(){
 	speed = -speed;
-	transform.localScale = Vector3.Scale(transform.localScale, Vector3(1,1,1));
 }
