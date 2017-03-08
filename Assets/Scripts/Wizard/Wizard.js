@@ -140,7 +140,7 @@ function Fire(){
 }
 
 function OnCollisionEnter2D (hit : Collision2D){
-	if (hit.gameObject.tag == "mp"  && can_jump){
+	if (hit.gameObject.tag == "Untagged" || hit.gameObject.tag == "mp"  && can_jump){
 		jumping = false;
 		can_double_jump = true;
 	}
