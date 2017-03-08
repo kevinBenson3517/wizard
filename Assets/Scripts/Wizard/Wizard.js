@@ -71,13 +71,18 @@ function Move(){
 			if(currentDir != true){
 				transform.localScale = Vector3.Scale(transform.localScale, Vector3(-1,1,1));
 				currentDir = true;
+				GetComponent.<Animator>().Play("wizardWalkRight");
 			}
 		}
-		if(x<0){
+		else if(x<0){
 			if(currentDir != false){
 				transform.localScale =  Vector3.Scale(transform.localScale, Vector3(-1,1,1));
 				currentDir = false;
+				GetComponent.<Animator>().Play("wizardWalkRight");
 			}
+		}
+		else {
+			GetComponent.<Animator>().Play("WizardStandStill");
 		}
 	}
 }
