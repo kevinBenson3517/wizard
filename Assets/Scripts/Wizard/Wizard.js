@@ -61,6 +61,7 @@ function Update () {
 	Move();
 	Jump();
 	Fire();
+	print(transform.position);
 }
 
 function Move(){
@@ -191,7 +192,7 @@ function EnablePlayer(){
 }
 
 function death(){
-	Time.timeScale = 0;
+	DisablePlayer();
 	money -=10;
 	DeathCanvas.enabled = true;
 	lives = 3;
