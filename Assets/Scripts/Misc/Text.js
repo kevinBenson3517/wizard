@@ -77,7 +77,7 @@ function Start () {
 }
 
 function WaitUntilButtonPress(){
-	while (!Input.GetButtonDown("Fire1"))
+	while (!Input.anyKey)
 		yield;
 	print("button pressed");
 }
