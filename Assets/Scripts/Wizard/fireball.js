@@ -8,7 +8,7 @@ var speed:float;
 var damage:int;
 
 function Start () {
-	main_camera = GameObject.FindWithTag("MainCamera").GetComponent.<Camera>();
+	main_camera = GameObject.FindWithTag("truecamera").GetComponent.<Camera>();
 	// var rend = GetComponent.<Renderer>();
 	//
 	// // Set specular shader

@@ -7,7 +7,7 @@ var margin_y:float[];
 var y_fallzone:float;
 
 function Start () {
-	main_camera = GameObject.FindWithTag("MainCamera").GetComponent.<Camera>();
+	main_camera = GameObject.FindWithTag("truecamera").GetComponent.<Camera>();
 }
 
 function Update () {

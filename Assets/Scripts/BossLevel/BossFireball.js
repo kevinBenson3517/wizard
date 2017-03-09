@@ -10,7 +10,7 @@ var speed:float;
 var main_camera:Camera;
 
 function Start () {
-	main_camera = GameObject.FindWithTag("MainCamera").GetComponent.<Camera>();
+	main_camera = GameObject.FindWithTag("truecamera").GetComponent.<Camera>();
 	switch (type){
 		case 0:
 			break;
