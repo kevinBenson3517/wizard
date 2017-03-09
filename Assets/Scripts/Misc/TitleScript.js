@@ -4,12 +4,14 @@ import UnityEngine.SceneManagement;
 
 var intro:String;
 
-function Start () {
+var time:float;
 
+function Start () {
+	time = Time.time;
 }
 
 function Update () {
-	if (Input.GetButton("Fire1")){	// shoot
+	if (Input.anyKey && Time.time-time > 1){	// shoot
 		SceneManager.LoadScene(intro);
 	}
 }
