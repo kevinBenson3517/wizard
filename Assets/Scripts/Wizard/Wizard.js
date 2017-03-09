@@ -61,7 +61,7 @@ function Update () {
 	Move();
 	Jump();
 	Fire();
-	print(transform.position);
+	//print(transform.position);
 }
 
 function Move(){
