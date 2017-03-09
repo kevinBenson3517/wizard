@@ -30,7 +30,35 @@ function Update () {
 		GetComponent.<GUITexture>().texture = health3;
 	}
 
-	if (Wizard.money >= 10){
+	else if(Wizard.lives == 4){
+		GetComponent.<GUITexture>().texture = health4;
+	}
+
+	else if(Wizard.lives == 5){
+		GetComponent.<GUITexture>().texture = health5;
+	}
+
+	else if(Wizard.lives == 6){
+		GetComponent.<GUITexture>().texture = health6;
+	}
+
+	else if(Wizard.lives == 7){
+		GetComponent.<GUITexture>().texture = health7;
+	}
+
+	else if(Wizard.lives == 8){
+		GetComponent.<GUITexture>().texture = health8;
+	}
+
+	else if(Wizard.lives == 9){
+		GetComponent.<GUITexture>().texture = health9;
+	}
+
+	else if(Wizard.lives == 10){
+		GetComponent.<GUITexture>().texture = health10;
+	}
+
+	if (Wizard.money >= 9){
 		AddHearts();
 		Wizard.money = Wizard.money - 10;
 	}

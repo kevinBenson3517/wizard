@@ -39,8 +39,12 @@ var lives : int;	// lives
 	---------------------*/
 var shoot_sound : AudioClip; // fireball shoot audio clip
 var jump_sound : AudioClip;	 // jump audio clip
+var hurt_sound : AudioClip;
+var lose_sound : AudioClip;
 private var shoot_source : AudioSource;
 private var jump_source : AudioSource;
+private var hurt_source : AudioSource;
+private var lose_source : AudioSource;
 private var volLowRange : float = 0.5;
 private var volHighRange : float = 1.0;
 
@@ -48,6 +52,7 @@ function Awake() {
 	/* for turning on the sound effect */
 	shoot_source = GetComponent.<AudioSource>();
 	jump_source = GetComponent.<AudioSource>();
+	hurt_source = GetComponent.<AudioSource>();
 }
 
 function Start () {
@@ -155,9 +160,12 @@ function OnCollisionEnter2D (hit : Collision2D){
 	{
 		print(hit.gameObject.tag);
 		lives -= 1;
+		var vol : float = Random.Range(volLowRange, volHighRange); // randomizes vol to make more interesting
+		hurt_source.PlayOneShot(hurt_sound, vol);	// playing the sound effect
 		print(lives);
 		if(lives<=0){
 			death();
+			lose_source.PlayOneShot(lose_sound, vol);	// playing the sound effect
 		}
 	}
 
