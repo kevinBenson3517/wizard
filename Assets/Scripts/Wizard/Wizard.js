@@ -73,22 +73,23 @@ function Move(){
 	if (can_move){
 		var x:int = Input.GetAxisRaw("Horizontal");
 		transform.Translate(x*speed,0,0);
+		
+		if(x!=0)
+			GetComponent.<Animator>().SetBool("walking",true);
+		else
+			GetComponent.<Animator>().SetBool("walking",false);
+
 		if(x>0){
 			if(currentDir != true){
 				transform.localScale = Vector3.Scale(transform.localScale, Vector3(-1,1,1));
 				currentDir = true;
-				GetComponent.<Animator>().Play("wizardWalkRight");
 			}
 		}
 		else if(x<0){
 			if(currentDir != false){
 				transform.localScale =  Vector3.Scale(transform.localScale, Vector3(-1,1,1));
 				currentDir = false;
-				GetComponent.<Animator>().Play("wizardWalkRight");
 			}
-		}
-		else {
-			GetComponent.<Animator>().Play("WizardStandStill");
 		}
 	}
 }
