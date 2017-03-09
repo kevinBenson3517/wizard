@@ -2,5 +2,5 @@
 var wizard:GameObject;
 
 public function onButtonClick(){
-	SceneManager.LoadScene("Level 3");
+	Application.LoadLevel(Application.loadedLevel);
  }

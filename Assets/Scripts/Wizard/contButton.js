@@ -2,5 +2,5 @@
 var DeathCanvas:Canvas;
 
 function onButtonClick(){
-	SceneManager.LoadScene("Level 3");
+	Application.LoadLevel(Application.loadedLevel);
 } 

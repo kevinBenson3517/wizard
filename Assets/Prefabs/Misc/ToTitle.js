@@ -1,4 +1,4 @@
 ﻿
-public function start(){
+public function mainMenu(){
 	SceneManager.LoadScene("Title");
 } 
