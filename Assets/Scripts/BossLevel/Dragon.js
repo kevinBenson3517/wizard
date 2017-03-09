@@ -53,7 +53,7 @@ function Move(){
 		transform.Rotate(Vector3.back*2);
 		fadeout.GetComponent.<SpriteRenderer>().color.a += fadeout_increment;
 		if (Time.time-time_since_killed > time_to_end){
-			Application.LoadLevel(level);
+			SceneManager.LoadScene(level);
 		}
 	}
 	else
