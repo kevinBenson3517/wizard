@@ -33,6 +33,9 @@ var width:Vector3;
 
 var lives : int;	// lives
 
+var invincible:boolean;
+var time_on_hit:float;
+
 
 /*----------------------
 	for sound effects
@@ -60,20 +63,21 @@ function Start () {
 	lives = 3;
 	DeathCanvas.enabled = false;
 	AddMoney(0);
+	invincible = false;
 }
 
 function Update () {
 	Move();
 	Jump();
 	Fire();
-	//print(transform.position);
+	iFrames();
 }
 
 function Move(){
 	if (can_move){
 		var x:int = Input.GetAxisRaw("Horizontal");
 		transform.Translate(x*speed,0,0);
-		
+
 		if(x!=0)
 			GetComponent.<Animator>().SetBool("walking",true);
 		else
@@ -146,6 +150,16 @@ function Fire(){
 	}
 }
 
+function iFrames(){
+	if (invincible){
+		if (Time.time - time_on_hit > 3){
+			var rend:Renderer = GetComponent.<Renderer>();
+			invincible = false;
+			rend.material.color.a = 1;
+		}
+	}
+}
+
 function OnCollisionEnter2D (hit : Collision2D){
 	if ((hit.gameObject.tag  == "mp" || "Untagged")  && can_jump){
 
@@ -159,14 +173,21 @@ function OnCollisionEnter2D (hit : Collision2D){
 
 	if (hit.gameObject.CompareTag("troll") || hit.gameObject.CompareTag("hazard") || hit.gameObject.CompareTag("boss_fireball") || hit.gameObject.CompareTag("dragon"))
 	{
-		print(hit.gameObject.tag);
-		lives -= 1;
-		var vol : float = Random.Range(volLowRange, volHighRange); // randomizes vol to make more interesting
-		hurt_source.PlayOneShot(hurt_sound, vol);	// playing the sound effect
-		print(lives);
-		if(lives<=0){
-			death();
-			lose_source.PlayOneShot(lose_sound, vol);	// playing the sound effect
+		if (!invincible){
+			print(hit.gameObject.tag);
+			lives -= 1;
+			var vol : float = Random.Range(volLowRange, volHighRange); // randomizes vol to make more interesting
+			hurt_source.PlayOneShot(hurt_sound, vol);	// playing the sound effect
+			print(lives);
+			if(lives<=0){
+				death();
+				lose_source.PlayOneShot(lose_sound, vol);	// playing the sound effect
+			}
+			invincible = true;
+			time_on_hit = Time.time;
+			GetComponent.<Rigidbody2D>().AddForce(Vector3.up*(jumpForce/2));
+			var rend:Renderer = GetComponent.<Renderer>();
+			rend.material.color.a = .25;
 		}
 	}
 
